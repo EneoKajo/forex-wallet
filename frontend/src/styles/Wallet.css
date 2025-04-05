@@ -1,0 +1,410 @@
+.wallet-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(45deg, #12c2e9, #6a7ee9, #c471ed);
+}
+
+.wallet-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+}
+
+.refresh-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 5px 16px 5px 5px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.refresh-container:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.refresh-all-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 8px;
+  user-select: none;
+}
+
+.refresh-all-button {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.refresh-all-button:hover {
+  transform: rotate(30deg) scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-all-button:active {
+  transform: scale(0.95);
+}
+
+.refresh-all-button.refreshing {
+  animation: spin 1.5s linear infinite;
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.wallet-list {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 70vh;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.wallet-list:hover {
+  transform: translateY(1px);
+}
+
+.rate-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 0.8fr;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rate-row:last-child {
+  border-bottom: none;
+}
+
+.rate-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(1px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.currency-pair {
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  padding-left: 10px;
+  border-left: 3px solid #36d1dc;
+  transition: border-color 0.3s ease;
+}
+
+.rate-row:hover .currency-pair {
+  border-left-color: #5b86e5;
+}
+
+.rate-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.last-updated-time {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.rate-refresh-button, .rate-delete-button {
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rate-refresh-button {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.rate-refresh-button:hover {
+  transform: rotate(30deg) scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rate-refresh-button:active {
+  transform: scale(0.95);
+}
+
+.rate-refresh-button.refreshing {
+  animation: spin 1.5s linear infinite;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.rate-delete-button {
+  background: rgba(255, 82, 82, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.rate-delete-button:hover {
+  background: rgba(255, 82, 82, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(255, 82, 82, 0.2);
+}
+
+.rate-delete-button:active {
+  transform: scale(0.95);
+  background: rgba(255, 82, 82, 0.4);
+}
+
+.empty-wallet {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 50px 30px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.empty-wallet:hover {
+  transform: translateY(-5px);
+}
+
+.empty-wallet-icon {
+  font-size: 60px;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.empty-wallet h3 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.empty-wallet p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.add-currency-button {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.add-currency-button:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.add-currency-button:active {
+  transform: translateY(-1px);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid white;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.loading-container p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  background: rgba(255, 82, 82, 0.15);
+  color: #ff6b6b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.wallet-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wallet-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wallet-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.wallet-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .wallet-content {
+    padding: 15px 10px;
+  }
+
+  .rate-row {
+    grid-template-columns: 1fr 0.8fr;
+    grid-template-rows: auto auto;
+    gap: 8px 15px;
+    padding: 15px;
+  }
+
+  .currency-pair {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .rate-value {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+
+  .last-updated-time {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .row-actions {
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-content h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .refresh-container {
+    padding: 3px 12px 3px 3px;
+  }
+
+  .refresh-all-button {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .rate-row {
+    padding: 12px;
+  }
+
+  .currency-pair {
+    font-size: 15px;
+  }
+
+  .rate-value {
+    font-size: 16px;
+  }
+
+  .rate-refresh-button, .rate-delete-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .empty-wallet {
+    padding: 40px 20px;
+  }
+
+  .empty-wallet-icon {
+    font-size: 50px;
+  }
+
+  .empty-wallet h3 {
+    font-size: 22px;
+  }
+}

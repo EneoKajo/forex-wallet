@@ -1,0 +1,15 @@
+   
+.main-content {
+    margin-left: 70px;
+    min-height: 100vh;
+    
+    transition: all 0.3s ease;
+  }
+  
+
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 0;
+      margin-top: 60px;
+    }
+  }
